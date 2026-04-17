@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vicente Barber Shop — Los Angeles, CA 90042</title>
+    <meta name="description" content="Vicente Barber Shop in Highland Park, Los Angeles 90042. Classic barbering, affordable prices. Walk-ins welcome.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #b22234;
+            --red-dark: #8b1a29;
+            --blue: #1a3a5c;
+            --cream: #f8f4eb;
+            --brown: #3d2b1f;
+            --white: #ffffff;
+            --warm-white: #fdfbf7;
+            --gray: #6b6b6b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Barlow', sans-serif; color: var(--brown); background: var(--cream); }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(61,43,31,0.95); backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-brand {
+            font-family: 'Abril Fatface', serif;
+            color: var(--cream);
+            font-size: 1.4rem;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: rgba(248,244,235,0.8); text-decoration: none;
+            font-size: 0.85rem; font-weight: 500;
+            letter-spacing: 1px; text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--cream); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+        .hamburger span { width: 25px; height: 2px; background: var(--cream); }
+
+        /* Hero - vintage barbershop vibe */
+        .hero {
+            min-height: 100vh;
+            background: var(--brown);
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    var(--red) 0px, var(--red) 8px,
+                    var(--white) 8px, var(--white) 16px,
+                    var(--blue) 16px, var(--blue) 24px,
+                    var(--white) 24px, var(--white) 32px
+                );
+            width: 8px;
+            left: 2rem;
+            top: 15%; bottom: 15%;
+            border-radius: 4px;
+        }
+        .hero::after {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    var(--red) 0px, var(--red) 8px,
+                    var(--white) 8px, var(--white) 16px,
+                    var(--blue) 16px, var(--blue) 24px,
+                    var(--white) 24px, var(--white) 32px
+                );
+            width: 8px;
+            right: 2rem;
+            left: auto;
+            top: 15%; bottom: 15%;
+            border-radius: 4px;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 600px; }
+        .hero .est {
+            color: var(--cream);
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-family: 'Abril Fatface', serif;
+            color: var(--cream);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            color: rgba(248,244,235,0.7);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+        .btn {
+            display: inline-block; padding: 0.9rem 2.5rem;
+            text-decoration: none; font-weight: 600;
+            font-size: 0.9rem; letter-spacing: 1px;
+            text-transform: uppercase; transition: all 0.3s;
+        }
+        .btn-red { background: var(--red); color: var(--white); border-radius: 4px; }
+        .btn-red:hover { background: var(--red-dark); }
+        .btn-cream { border: 1.5px solid var(--cream); color: var(--cream); border-radius: 4px; margin-left: 1rem; }
+        .btn-cream:hover { background: var(--cream); color: var(--brown); }
+
+        section { padding: 5rem 2rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-family: 'Abril Fatface', serif; font-size: 2.2rem; color: var(--brown); }
+        .section-header p { color: var(--gray); margin-top: 0.5rem; }
+        .red-line { width: 50px; height: 3px; background: var(--red); margin: 0.5rem auto; }
+
+        .services { background: var(--white); }
+        .services-list {
+            max-width: 600px; margin: 0 auto;
+        }
+        .service-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(61,43,31,0.1);
+        }
+        .service-item h3 { font-size: 1rem; font-weight: 600; }
+        .service-item .desc { color: var(--gray); font-size: 0.85rem; margin-top: 0.15rem; }
+        .service-item .price { font-family: 'Abril Fatface', serif; color: var(--red); font-size: 1.3rem; }
+
+        .about {
+            background: var(--brown);
+            color: var(--cream);
+            text-align: center;
+        }
+        .about .section-header h2 { color: var(--cream); }
+        .about p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(248,244,235,0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .contact { background: var(--warm-white); text-align: center; }
+        .contact h2 { font-family: 'Abril Fatface', serif; font-size: 2.2rem; margin-bottom: 1rem; color: var(--brown); }
+        .contact p { color: var(--gray); margin-bottom: 2rem; }
+        .contact-grid {
+            display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 2rem;
+        }
+        .contact-item .label {
+            color: var(--red); font-size: 0.75rem;
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.3rem; font-weight: 600;
+        }
+        .contact-item a { color: var(--brown); text-decoration: none; font-size: 1.05rem; }
+        .contact-item a:hover { color: var(--red); }
+
+        .map-container { max-width: 650px; margin: 0 auto; border-radius: 8px; overflow: hidden; border: 2px solid rgba(178,34,52,0.15); }
+        .map-container iframe { width: 100%; height: 280px; border: none; }
+
+        footer {
+            background: var(--brown); color: rgba(248,244,235,0.5);
+            text-align: center; padding: 2rem; font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav-links.active {
+                display: flex; flex-direction: column; position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--brown); padding: 1.5rem 2rem; gap: 1rem;
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .btn-cream { margin-left: 0; margin-top: 1rem; }
+            .hero .btn { display: block; width: 100%; text-align: center; }
+            .hero::before, .hero::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">Vicente's</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Visit</a></li>
+        </ul>
+        <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="est">Highland Park • Los Angeles</p>
+            <h1>Vicente Barber Shop</h1>
+            <p>A neighborhood barbershop with old-school values and modern skills. Classic cuts, clean fades, and friendly service — the way it should be.</p>
+            <a href="#contact" class="btn btn-red">Visit Us</a>
+            <a href="#services" class="btn btn-cream">Our Prices</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Services & Prices</h2>
+            <div class="red-line"></div>
+        </div>
+        <div class="services-list">
+            <div class="service-item">
+                <div><h3>Men's Haircut</h3><div class="desc">Classic cut with wash and style</div></div>
+                <div class="price">$20</div>
+            </div>
+            <div class="service-item">
+                <div><h3>Fade</h3><div class="desc">Skin, mid, or high fade</div></div>
+                <div class="price">$25</div>
+            </div>
+            <div class="service-item">
+                <div><h3>Beard Trim</h3><div class="desc">Shape and line</div></div>
+                <div class="price">$12</div>
+            </div>
+            <div class="service-item">
+                <div><h3>Haircut + Beard</h3><div class="desc">Full service combo</div></div>
+                <div class="price">$30</div>
+            </div>
+            <div class="service-item">
+                <div><h3>Kids Cut</h3><div class="desc">12 and under</div></div>
+                <div class="price">$15</div>
+            </div>
+            <div class="service-item">
+                <div><h3>Senior Cut</h3><div class="desc">Classic gentleman's cut</div></div>
+                <div class="price">$15</div>
+            </div>
+            <div class="service-item">
+                <div><h3>Lineup</h3><div class="desc">Edge up and shape</div></div>
+                <div class="price">$10</div>
+            </div>
+            <div class="service-item">
+                <div><h3>Hot Towel Shave</h3><div class="desc">Straight razor with hot towel</div></div>
+                <div class="price">$25</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-header">
+            <h2>About Vicente's</h2>
+            <div class="red-line"></div>
+        </div>
+        <p>Vicente Barber Shop is a community staple in Highland Park. We believe in honest work, fair prices, and treating every customer like family. Whether you need a quick lineup or a full transformation, our experienced barbers have you covered. Cash-friendly and always welcoming.</p>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Come See Us</h2>
+        <p>Walk-ins always welcome. No appointment needed.</p>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="label">Location</div>
+                <div>Los Angeles, CA 90042</div>
+            </div>
+            <div class="contact-item">
+                <div class="label">Hours</div>
+                <div>Mon–Sat: 9AM–7PM</div>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13200.0!2d-118.2!3d34.11!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c6f9b3e5a8b3%3A0x1234567890abcdef!2sLos%20Angeles%2C%20CA%2090042!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Vicente Barber Shop. All rights reserved. | Los Angeles, CA</p>
+    </footer>
+</body>
+</html>
